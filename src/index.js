@@ -1,8 +1,15 @@
-import React from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './less/base.less';
+import React from 'react';
+
+import App from 'views/App';
+import store from 'store';
+
+import 'index.html';
 
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.querySelector('#root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );
