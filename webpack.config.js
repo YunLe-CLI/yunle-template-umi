@@ -1,5 +1,37 @@
 const webpack = require('webpack');
 const path = require('path');
+const Mock = require('mockjs');
+
+const serverConfig = require('./config/server.config');
+const webpackConfig = require('./config/_config');
+const PATHS = webpackConfig.PATHS;
+const proxys = {};
+
+serverConfig.proxys.dev.map(function (item) {
+  proxys[item.path] = {
+    target: item.host,
+    pathRewrite: item.pathRewrite,
+    changeOrigin: true
+  };
+});
+serverConfig.router.dev.map(function (item) {
+  proxys[item.route] = {
+    secure: false,
+    bypass: function(req, res, opt){
+      if(req.path.indexOf(item.route) !== -1){
+        if (item.mockData) {
+          const data = Mock.mock(item.mockData);
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify(data));
+          return;
+        }
+        item.handle ? item.handle(req, res) : null;
+      }
+      return req.path;
+    }
+  };
+});
+
 
 const sourcePath = path.join(__dirname, './src');
 const staticsPath = path.join(__dirname, './static');
@@ -115,10 +147,11 @@ module.exports = function (env) {
     devServer: {
       contentBase: './src',
       historyApiFallback: true,
-      port: 3000,
+      port: webpackConfig.port,
       compress: isProd,
       inline: !isProd,
       hot: !isProd,
+      proxy: proxys,
       stats: {
         assets: true,
         children: false,
@@ -131,8 +164,8 @@ module.exports = function (env) {
         warnings: true,
         colors: {
           green: '\u001b[32m',
-        }
+        },
       },
-    }
+    },
   };
 };
