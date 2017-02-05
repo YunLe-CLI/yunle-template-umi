@@ -80,9 +80,10 @@ module.exports = function (env) {
     plugins.push(
       new webpack.HotModuleReplacementPlugin(),
       new BrowserSyncPlugin({
-        host: 'localhost',
+        notify: false,
         port: webpackConfig.port,
         proxy: 'localhost:9981',
+        open: 'external',
         files: 'src/*',
         files: 'index.html',
       })
