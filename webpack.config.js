@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const Mock = require('mockjs');
-
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const serverConfig = require('./config/server.config');
 const webpackConfig = require('./config/_config');
 const PATHS = webpackConfig.PATHS;
@@ -78,10 +78,16 @@ module.exports = function (env) {
     );
   } else {
     plugins.push(
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new BrowserSyncPlugin({
+        host: 'localhost',
+        port: webpackConfig.port,
+        proxy: 'localhost:9981',
+        files: 'src/*',
+        files: 'index.html',
+      })
     );
   }
-
   return {
     devtool: isProd ? 'source-map' : 'eval',
     context: sourcePath,
@@ -147,7 +153,7 @@ module.exports = function (env) {
     devServer: {
       contentBase: './src',
       historyApiFallback: true,
-      port: webpackConfig.port,
+      port: 9981,
       compress: isProd,
       inline: !isProd,
       hot: !isProd,
