@@ -34,7 +34,7 @@ serverConfig.router.dev.map(function (item) {
 
 
 const sourcePath = path.join(__dirname, './src');
-const staticsPath = path.join(__dirname, './static');
+const staticsPath = path.join(__dirname, './dist');
 
 module.exports = function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development';
