@@ -82,10 +82,9 @@ module.exports = function (env) {
       new BrowserSyncPlugin({
         notify: false,
         port: webpackConfig.port,
-        proxy: 'localhost:9981',
+        proxy: `localhost:${webpackConfig.port * 2 + 3}`,
         open: 'external',
         files: 'src/*',
-        files: 'index.html',
       })
     );
   }
@@ -154,7 +153,7 @@ module.exports = function (env) {
     devServer: {
       contentBase: './src',
       historyApiFallback: true,
-      port: 9981,
+      port: webpackConfig.port * 2 + 3,
       compress: isProd,
       inline: !isProd,
       hot: !isProd,
