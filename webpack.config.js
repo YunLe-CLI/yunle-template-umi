@@ -57,6 +57,7 @@ module.exports = function (env) {
 
   if (isProd) {
     plugins.push(
+      new ExtractTextPlugin("main.css"),
       new webpack.LoaderOptionsPlugin({
         minimize: true,
         debug: false
@@ -81,6 +82,7 @@ module.exports = function (env) {
     );
   } else {
     plugins.push(
+      new ExtractTextPlugin("main.css"),
       new webpack.HotModuleReplacementPlugin(),
       new BrowserSyncPlugin({
         notify: false,
@@ -117,18 +119,17 @@ module.exports = function (env) {
         {
           test: /\.css$/,
           exclude: /node_modules/,
-          use: [
-            'style-loader',
-            'css-loader'
-          ]
+          use: ExtractTextPlugin.extract({
+            fallback: "style-loader",
+            use: "css-loader"
+          })
         },
         {
           test: /\.less$/,
-          use: [
-            'style-loader',
-            'css-loader',
-            'less-loader'
-          ]
+          use: ExtractTextPlugin.extract({
+            fallback: "style-loader",
+            use: "css-loader!less-loader"
+          })
         },
         {
           test: /\.(js|jsx)$/,
