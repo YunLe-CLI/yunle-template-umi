@@ -6,21 +6,21 @@ export const REQUEST_SUM = 'REQUEST_SUM';
 function createTransaction(transaction) {
   return {
     type: ADD_TRANSACTION,
-    transaction
+    transaction,
   };
 }
 
 export function deleteTransaction(id) {
   return {
     type: DELETE_TRANSACTION,
-    id
+    id,
   };
 }
 
 export function requestSum(data) {
   return {
     type: REQUEST_SUM,
-    data
+    data,
   };
 }
 
