@@ -98,7 +98,14 @@ module.exports = function (env) {
     context: sourcePath,
     entry: {
       js: './index.js',
-      vendor: ['react']
+      vendor: [
+        'react',
+        'react-dom',
+        'redux',
+        'react-router',
+        'redux-thunk',
+        'react-redux',
+      ]
     },
     output: {
       path: staticsPath,
