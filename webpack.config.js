@@ -4,7 +4,10 @@ const Mock = require('mockjs');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const serverConfig = require('./config/server.config');
 const webpackConfig = require('./config/_config');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 const PATHS = webpackConfig.PATHS;
+
 const proxys = {};
 
 serverConfig.proxys.dev.map(function (item) {
@@ -84,7 +87,7 @@ module.exports = function (env) {
         port: webpackConfig.port,
         proxy: `localhost:${webpackConfig.port * 2 + 3}`,
         open: 'external',
-        files: 'src/*',
+        // files: 'src/*',
       })
     );
   }
@@ -117,6 +120,14 @@ module.exports = function (env) {
           use: [
             'style-loader',
             'css-loader'
+          ]
+        },
+        {
+          test: /\.less$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            'less-loader'
           ]
         },
         {
