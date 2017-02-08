@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Button, Layout, Menu, Breadcrumb } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 class Home extends Component {
@@ -7,11 +7,8 @@ class Home extends Component {
     routing: PropTypes.object,
     actions: PropTypes.object
   };
-  componentWillMount() {
-    const { transactions, actions } = this.props;
-  }
-
   render() {
+    const { test, actions } = this.props;
     return (
       <div>
         <Layout className="layout">
@@ -34,7 +31,10 @@ class Home extends Component {
               <Breadcrumb.Item>List</Breadcrumb.Item>
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
-            <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>Content</div>
+            <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+              <Button onClick={actions.testClick} type="primary">点</Button>
+              {test.toJS().name}
+            </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
             Ant Design ©2016 Created by Ant UED

@@ -1,5 +1,5 @@
 import keyMirror from 'keymirror';
 
 export default keyMirror({
-  TEST: null
+  TEST_CLICK: null,
 });

@@ -2,7 +2,8 @@ import React, { Component, PropTypes, cloneElement } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as AppActions from 'actions';
+import AppActions from 'actions';
+
 import './style.less';
 
 class App extends Component {

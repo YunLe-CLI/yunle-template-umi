@@ -108,6 +108,7 @@ module.exports = function (env) {
         'react-redux',
         'immutable',
         'keymirror',
+        'redux-immutablejs',
       ]
     },
     output: {

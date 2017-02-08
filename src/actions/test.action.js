@@ -1,10 +1,10 @@
-export const ADD_TRANSACTION = 'ADD_TRANSACTION';
+import ALL_TYPE from '../constants';
 
-import { TEST } from '../constants';
+const { TEST } = ALL_TYPE;
 
-export function createTransaction(transaction) {
+export function testClick() {
   return {
-    type: TEST,
-    transaction
+    type: TEST.TEST_CLICK,
+    text: 'click',
   };
 }

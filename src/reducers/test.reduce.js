@@ -1,15 +1,13 @@
-import { combineReducers } from 'redux';
-import { TEST } from '../constants';
+import { fromJS } from 'immutable';
+import { createReducer } from 'redux-immutablejs';
+import ALL_TYPE from '../constants';
 
-function test(state = {}, action) {
-  switch (action.type) {
-    case TEST:
-      return state;
-    default:
-      return state;
-  }
-}
+const { TEST } = ALL_TYPE;
 
-export default combineReducers({
-  test,
+const initialState = fromJS({
+  name: 'test text',
+});
+
+export default createReducer(initialState, {
+  [TEST.TEST_CLICK]: (state, action) => state.setIn(['name'], action.text),
 });
