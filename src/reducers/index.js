@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 
-import transactions from './transactions';
+import test from './test.reduce';
+import routing from './router.reduce';
 
-/**
- * Routing to be implemented
- */
 export default combineReducers({
-  transactions
+  test,
+  routing,
 });

@@ -103,8 +103,11 @@ module.exports = function (env) {
         'react-dom',
         'redux',
         'react-router',
+        'react-router-redux',
         'redux-thunk',
         'react-redux',
+        'immutable',
+        'keymirror',
       ]
     },
     output: {

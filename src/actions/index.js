@@ -1,8 +1,5 @@
-export const ADD_TRANSACTION = 'ADD_TRANSACTION';
+import test from './test.action';
 
-function createTransaction(transaction) {
-  return {
-    type: ADD_TRANSACTION,
-    transaction
-  };
-}
+export default {
+  ...test,
+};
