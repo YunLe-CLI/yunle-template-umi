@@ -3,7 +3,7 @@ import { createReducer } from 'redux-immutablejs';
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import home from '../TestPage/reducer';
+import test from '../TestPage/reducer';
 import { APP_TYPE } from './constants';
 
 const {
@@ -21,5 +21,5 @@ const app = createReducer(initialState, {
 export default combineReducers({
   routing: routerReducer,
   app,
-  home,
+  test,
 });

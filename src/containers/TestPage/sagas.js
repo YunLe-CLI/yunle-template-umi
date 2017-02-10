@@ -10,6 +10,7 @@ const {
 
 const {
   TEST_HOME,
+  FETCH_HOME,
 } = HOME_TYPE;
 
 export function* incrementAsync() {
@@ -17,6 +18,7 @@ export function* incrementAsync() {
   try {
     const data = yield call(api.checkV2);
     yield put({ type: LOGINDING_APP, loading: false, data });
+    yield put({ type: FETCH_HOME, data });
   } catch (error) {
     yield put({ type: LOGINDING_APP, loading: false });
   }

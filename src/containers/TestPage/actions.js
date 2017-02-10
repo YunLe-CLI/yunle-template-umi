@@ -5,9 +5,9 @@ const {
   TEST_HOME,
 } = HOME_TYPE;
 
-export function testHome() {
+export function testClick(text) {
   return {
     type: TEST_HOME,
-    text: true,
+    text,
   };
 }
