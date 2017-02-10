@@ -1,21 +1,23 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistState } from 'redux-devtools';
-
+import createSagaMiddleware from 'redux-saga';
 import thunk from 'redux-thunk';
-import rootReducer from '../reducers';
-import DevTools from '../components/DevTools';
+import rootReducer from '../containers/App/reducer';
+import rootSaga from '../containers/App/sagas'
 
+
+const sagaMiddleware = createSagaMiddleware(rootSaga);
 export default function configureStore(initialState) {
   /* global someFunction window:true */
   /* eslint-disable no-underscore-dangle */
   let enhancer;
   if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
     enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
-      applyMiddleware(thunk),
+      applyMiddleware(thunk, sagaMiddleware),
     );
   } else {
     enhancer = compose(
-      applyMiddleware(thunk),
+      applyMiddleware(thunk, sagaMiddleware),
       DevTools.instrument(),
       persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)),
     );
@@ -27,8 +29,8 @@ export default function configureStore(initialState) {
   );
 
   if (module.hot) {
-    module.hot.accept('../reducers', () =>
-      store.replaceReducer(require('../reducers').default),
+    module.hot.accept('../containers/App/reducer', () =>
+      store.replaceReducer(require('../containers/App/reducer').default),
     );
   }
   /* eslint-enable */

@@ -45,15 +45,19 @@
   "dependencies": {
     "antd": "^2.7.0",
     "antd-mobile": "^0.9.14",
+    "babel-polyfill": "^6.22.0",
     "immutable": "^3.8.1",
     "keymirror": "^0.1.1",
     "react": "15.4.2",
+    "react-custom-scrollbars": "^4.0.1",
     "react-dom": "15.4.2",
     "react-redux": "5.0.2",
     "react-router": "^3.0.2",
     "react-router-redux": "^4.0.7",
     "redux": "3.6.0",
     "redux-immutablejs": "0.0.8",
-    "redux-thunk": "2.2.0"
+    "redux-saga": "^0.9.5",
+    "redux-thunk": "2.2.0",
+    "whatwg-fetch": "^2.0.2"
   }
 }

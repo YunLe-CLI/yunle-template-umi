@@ -1,14 +1,15 @@
 import React, { Component, PropTypes, cloneElement } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Spin } from 'antd';
+import AppActions from './actions';
 
-import AppActions from 'actions';
-
-import './style.less';
+import './assets/style.less';
 
 class App extends Component {
   static propTypes = {
     routing: PropTypes.object,
+    state: PropTypes.object,
     actions: PropTypes.object
   };
   componentWillMount() {
@@ -16,19 +17,25 @@ class App extends Component {
   }
 
   render() {
+    const { children, actions, state } = this.props;
     return (
       <div className="viewport">
-        { cloneElement(this.props.children, this.props) }
+        <Spin
+          spinning={state.app.toJS().loading}
+          size="large"
+          className="viewport" tip="Loading...">
+          { children ? cloneElement(children, { state, actions }) :
+            null
+          }
+        </Spin>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const { routing, test } = state;
   return {
-    test,
-    routing,
+    state
   };
 }
 
