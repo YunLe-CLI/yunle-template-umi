@@ -8,7 +8,6 @@ import './assets/style.less';
 
 class App extends Component {
   static propTypes = {
-    routing: PropTypes.object,
     state: PropTypes.object,
     actions: PropTypes.object
   };

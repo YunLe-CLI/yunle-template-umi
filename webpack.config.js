@@ -142,8 +142,15 @@ module.exports = function (env) {
           test: /\.less$/,
           use: ExtractTextPlugin.extract({
             fallback: "style-loader",
-            use: "css-loader!less-loader"
-          })
+            use: "css-loader!less-loader",
+          }),
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          use: [
+            'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+            'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false',
+          ],
         },
         {
           test: /\.(js|jsx)$/,

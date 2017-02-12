@@ -32,6 +32,7 @@
     "eslint-plugin-react": "6.9.0",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.10.0",
+    "image-webpack-loader": "^3.2.0",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
     "mockjs": "^1.0.1-beta3",
