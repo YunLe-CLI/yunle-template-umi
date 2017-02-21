@@ -4,10 +4,12 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from '../containers/App/reducer';
 import rootSaga from '../containers/App/sagas';
 
-const sagaMiddleware = createSagaMiddleware(rootSaga);
+const sagaMiddleware = createSagaMiddleware();
 const enhancer = compose(
   applyMiddleware(thunk, sagaMiddleware),
 );
 export default function configureStore(initialState) {
-  return createStore(rootReducer, initialState, enhancer);
+  const store = createStore(rootReducer, initialState, enhancer);
+  sagaMiddleware.run(rootSaga);
+  return store;
 }

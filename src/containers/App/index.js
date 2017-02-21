@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Spin } from 'antd';
 import AppActions from './actions';
-
 import './assets/style.less';
 
 class App extends Component {

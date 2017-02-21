@@ -20,7 +20,4 @@ export function* app() {
   }
 }
 
-export default function* rootSaga() {
-  yield fork(app);
-  yield fork(home);
-}
+export default app;

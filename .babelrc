@@ -14,8 +14,7 @@
         },
         {
           "libraryName": "antd-mobile",
-          "libraryDirectory": "component",
-          "style": true
+          "style": "css"
         },
       ]
     ]

@@ -6,5 +6,5 @@ import Root from './containers';
 import './index.html';
 ReactDOM.render(
   <Root />,
-  document.getElementById('root'),
+  document.getElementById('root')
 );

@@ -87,7 +87,7 @@ module.exports = function (env) {
       new BrowserSyncPlugin({
         notify: false,
         port: webpackConfig.port,
-        proxy: `localhost:${webpackConfig.port * 2 + 3}`,
+        proxy: `0.0.0.0:${webpackConfig.port * 2 + 3}`,
         open: 'external',
         // files: 'src/*',
       })
@@ -117,6 +117,7 @@ module.exports = function (env) {
     output: {
       path: staticsPath,
       filename: '[name].bundle.js',
+      publicPath: '/',
     },
     module: {
       rules: [
@@ -132,7 +133,6 @@ module.exports = function (env) {
         },
         {
           test: /\.css$/,
-          exclude: /node_modules/,
           use: ExtractTextPlugin.extract({
             fallback: "style-loader",
             use: "css-loader"
@@ -162,7 +162,7 @@ module.exports = function (env) {
       ],
     },
     resolve: {
-      extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
+      extensions: ['.web.js', '.json', '.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
       modules: [
         path.resolve(__dirname, 'node_modules'),
         sourcePath
@@ -184,6 +184,7 @@ module.exports = function (env) {
     },
 
     devServer: {
+      host: '0.0.0.0',
       contentBase: './src',
       historyApiFallback: true,
       port: webpackConfig.port * 2 + 3,

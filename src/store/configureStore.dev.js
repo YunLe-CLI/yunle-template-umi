@@ -1,12 +1,13 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistState } from 'redux-devtools';
+
 import createSagaMiddleware from 'redux-saga';
 import thunk from 'redux-thunk';
 import rootReducer from '../containers/App/reducer';
-import rootSaga from '../containers/App/sagas'
+import rootSaga from '../containers/App/sagas';
+import DevTools from '../components/DevTools';
 
-
-const sagaMiddleware = createSagaMiddleware(rootSaga);
+const sagaMiddleware = createSagaMiddleware();
 export default function configureStore(initialState) {
   /* global someFunction window:true */
   /* eslint-disable no-underscore-dangle */
@@ -27,6 +28,7 @@ export default function configureStore(initialState) {
     initialState,
     enhancer,
   );
+  sagaMiddleware.run(rootSaga);
 
   if (module.hot) {
     module.hot.accept('../containers/App/reducer', () =>
