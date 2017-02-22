@@ -103,20 +103,9 @@ module.exports = function (env) {
     entry: {
       js: './index.js',
       vendor: [
-        'babel-polyfill',
         'react',
         'react-dom',
-        'redux',
-        'react-router',
-        'react-router-redux',
-        'redux-thunk',
-        'redux-saga',
-        'react-redux',
-        'immutable',
-        'keymirror',
-        'redux-immutablejs',
-        'whatwg-fetch',
-      ]
+      ],
     },
     output: {
       path: staticsPath,
