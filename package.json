@@ -60,5 +60,7 @@
     "redux-saga": "^0.14.3",
     "redux-thunk": "2.2.0",
     "whatwg-fetch": "^2.0.2"
-  }
+  },
+  "repository": "https://hexiao-o@github.com/hexiao-o/yunle-template-react.git",
+  "author": "hexiao-o"
 }
