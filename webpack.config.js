@@ -10,6 +10,10 @@ const PATHS = webpackConfig.PATHS;
 
 const proxys = {};
 
+const svgDirs = [];
+const antdDir = require.resolve('antd-mobile').replace(/warn\.js$/, '');
+svgDirs.push(antdDir);
+
 serverConfig.proxys.dev.map(function (item) {
   proxys[item.path] = {
     target: item.host,
@@ -146,11 +150,16 @@ module.exports = function (env) {
           }),
         },
         {
-          test: /\.(jpe?g|png|gif|svg)$/i,
+          test: /\.(jpe?g|png|gif)$/i,
           use: [
             'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
             'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false',
           ],
+        },
+        {
+          test: /\.(svg)$/i,
+          use: ['svg-sprite-loader'],
+          include: svgDirs,
         },
         {
           test: /\.(js|jsx)$/,
