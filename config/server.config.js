@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   proxys: {
     dev: [
       {
@@ -45,3 +45,5 @@ module.exports = {
     pro: [],
   },
 };
+
+ module.exports = config;

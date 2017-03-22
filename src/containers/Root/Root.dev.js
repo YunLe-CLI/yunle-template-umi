@@ -9,7 +9,11 @@ import DevTools from '../../components/DevTools';
 import configureStore from '../../store';
 
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState(state) {
+    return state.get('routing').toJS();
+  },
+});
 /* global someFunction window:true */
 /* eslint-disable no-underscore-dangle */
 export default class Root extends Component {
