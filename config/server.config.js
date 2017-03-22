@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   proxys: {
     dev: [
       {
@@ -11,6 +11,18 @@ module.exports = {
   },
   router: {
     dev: [
+			{
+		    route: '/api/login',
+		    mockData: {
+			    data: {
+				    avatar: "@image('200x200', '#50B347', '#FFF', '白猫')",
+				    nickname: '@csentence(3, 10)',
+			    },
+			    'status|200-201': 200,
+			    message: '@sentence(10, 25)',
+			    serverTime: '@now',
+		    },
+	    },
       {
         route: '/api/mock/checkV2',
         mockData: {
@@ -45,3 +57,5 @@ module.exports = {
     pro: [],
   },
 };
+
+ module.exports = config;

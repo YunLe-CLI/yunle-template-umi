@@ -4,7 +4,7 @@ const Mock = require('mockjs');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const serverConfig = require('./config/server.config');
 const webpackConfig = require('./config/_config');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const PATHS = webpackConfig.PATHS;
 

@@ -7,9 +7,12 @@ import routes from '../../router';
 import configureStore from '../../store';
 
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
-
-class Root extends Component {
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState(state) {
+    return state.get('routing').toJS();
+  },
+});
+export default class Root extends Component {
   render() {
     return (
       <Provider store={store}>
@@ -18,4 +21,3 @@ class Root extends Component {
     );
   }
 }
-export default Root;

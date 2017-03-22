@@ -27,22 +27,25 @@
 
 ```
 .
-├── .tmp                     # 开发临时文件
-├── dist                     # 打包生产环境后文件
 ├── config                   # Server config
 │   ├── server.config        # server
+├── docs                     # 打包生产环境后文件
 ├── src                      # 应用源文件
-│   ├── libs                 # 第三方库
-│       ├── js               # 第三方js库
-│       ├── css              # 第三方css库
-│       ├── fonts            # 第三方fonts库
-│       ├── ...              # 自定义
-│   ├── styles               # 样式
-│       ├── less             # less源文件
-│   ├── images               # images源文件
-│   ├── js                   # js源文件
+│   ├── api                  # 第三方库
+│       ├── api.config.js    # 第三方js库
+│       ├── index.js         # 第三方css库
+│   ├── components           # 组件库
+│       ├── DevTools         # redux dev tools
+│   ├── containers           # 容器库
+│       ├── App              # 入口容器
+│   ├── router               # 路由配置
+│   ├── store                # store
 │   ├── index.html           # html入口
-├── test                     # 单元测试
+│   ├── index.js             # js入口
+├── .babelrc 
+├── .eslintrc.js 
+├── package.json 
+├── webpack.config.js 
 ```
 
 ## mockjs学习

@@ -1,30 +1,26 @@
 import App from '../containers/App';
-import TestPage from '../containers/TestPage';
+import Login from '../containers/LoginPage';
+import NotFound from '../containers/404';
 
 const routes = {
+  name: 'app',
   path: '/',
   component: App,
-  indexRoute: { component: TestPage },
+  indexRoute: { component: Login },
   childRoutes: [
     {
+      name: 'Login',
+      breadcrumbName: '登录',
       path: 'login',
-      component: TestPage,
+      component: Login,
+    },
+    {
+      name: '404',
+      breadcrumbName: '404',
+      path: '*',
+      component: NotFound,
     },
   ],
-  // getIndexRoute(partialNextState, callback) {
-  //   require.ensure([], (require) => {
-  //     callback(null, {
-  //       component: require('../containers/Home'),
-  //     });
-  //   });
-  // },
-  // getChildRoutes(partialNextState, callback) {
-  //   require.ensure([], (require) => {
-  //     callback(null, [
-  //       require('./login.router'),
-  //     ]);
-  //   });
-  // },
 };
 
 export default routes;
