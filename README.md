@@ -29,11 +29,11 @@
 .
 ├── config                   # Server config
 │   ├── server.config        # server
-├── docs                     # 打包生产环境后文件
+├── docs                     # 说明
 ├── src                      # 应用源文件
-│   ├── api                  # 第三方库
-│       ├── api.config.js    # 第三方js库
-│       ├── index.js         # 第三方css库
+│   ├── api                  # api方法和配置库
+│       ├── api.config.js    # api接口配置
+│       ├── index.js         # fetch方法
 │   ├── components           # 组件库
 │       ├── DevTools         # redux dev tools
 │   ├── containers           # 容器库
