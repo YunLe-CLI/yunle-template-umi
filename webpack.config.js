@@ -11,8 +11,8 @@ const PATHS = webpackConfig.PATHS;
 const proxys = {};
 
 const svgDirs = [];
-const antdDir = require.resolve('antd-mobile').replace(/warn\.js$/, '');
-svgDirs.push(antdDir);
+// const antdDir = require.resolve('antd-mobile').replace(/warn\.js$/, '');
+// svgDirs.push(antdDir);
 
 serverConfig.proxys.dev.map(function (item) {
   proxys[item.path] = {
@@ -45,8 +45,8 @@ const staticsPath = path.join(__dirname, './dist');
 
 module.exports = function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development';
+  console.log(nodeEnv);
   const isProd = nodeEnv === 'production';
-
   const plugins = [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -87,7 +87,8 @@ module.exports = function (env) {
   } else {
     plugins.push(
       new ExtractTextPlugin("main.css"),
-      new webpack.HotModuleReplacementPlugin(),
+	    // new webpack.HotModuleReplacementPlugin()
+	    new webpack.HotModuleReplacementPlugin(),
       new BrowserSyncPlugin({
         notify: false,
         port: webpackConfig.port,
@@ -186,10 +187,15 @@ module.exports = function (env) {
       contentBase: './src',
       historyApiFallback: true,
       port: webpackConfig.port * 2 + 3,
+	    hot: !isProd,
+	    hotOnly: !isProd,
+	    inline: true,
+	    overlay: true,
       compress: isProd,
-      inline: !isProd,
-      hot: !isProd,
       proxy: proxys,
+	    setup: function(app) {
+		    console.log(app);
+	    },
       stats: {
         assets: true,
         children: false,

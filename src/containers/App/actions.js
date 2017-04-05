@@ -1,13 +1,14 @@
 import { APP_TYPE } from './constants';
-import * as login from '../LoginPage/actions';
+import config from '../config';
 
 const {
   LOGINDING_APP,
   GLOBAL_MODAL_SHOW,
   GLOBAL_MODAL_HIDE,
+  OPENMENU_APP,
 } = APP_TYPE;
 
-export function loadingApp({ loading = false, text }) {
+export function gLoadingApp({ loading = false, text }) {
   return {
     type: LOGINDING_APP,
     loading,
@@ -34,9 +35,26 @@ export function gModalHideApp() {
   };
 }
 
-export default {
-  ...login,
-  loadingApp,
-  gModalShowApp,
-  gModalHideApp,
-};
+export function openMenuApp(item) {
+  return {
+    type: OPENMENU_APP,
+    item,
+  };
+}
+let f = {};
+let actions = {};
+const d = config.map((item, index) => {
+	const a = require(`../${item.root}/actions`);
+	f = Object.assign(f, { ...a })
+	actions[item.root] = a;
+	return a;
+});
+
+export default Object.assign(actions, {
+	app: {
+		gLoadingApp,
+		gModalShowApp,
+		gModalHideApp,
+		openMenuApp,
+	},
+});

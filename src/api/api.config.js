@@ -1,3 +1,4 @@
+
 export default {
-  login: '/api/login',
+  test: '/api/test',
 };

@@ -8,7 +8,8 @@
     "dev": "webpack-dev-server",
     "prod": "cross-env NODE_ENV=production webpack-dev-server --env.prod=true",
     "build": "cross-env NODE_ENV=production webpack --env.prod=true",
-    "lint": "eslint ./src ./webpack.config.js -f table || true"
+    "lint": "eslint ./src ./webpack.config.js -f table || true",
+    "createPage": "node ./libs/createPage/index.js"
   },
   "license": "MIT",
   "devDependencies": {
@@ -23,6 +24,7 @@
     "babel-runtime": "^6.23.0",
     "browser-sync": "^2.18.8",
     "browser-sync-webpack-plugin": "^1.1.4",
+    "commander": "^2.9.0",
     "cross-env": "^3.2.4",
     "css-loader": "^0.27.3",
     "eslint": "^3.18.0",
@@ -32,9 +34,12 @@
     "eslint-plugin-react": "^6.10.3",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.1",
+    "fs-extra": "^2.1.2",
     "image-webpack-loader": "^3.2.0",
+    "inquirer": "^3.0.6",
     "less": "^2.7.2",
     "less-loader": "^4.0.2",
+    "mkdirp": "^0.5.1",
     "mockjs": "^1.0.1-beta3",
     "redux-devtools": "^3.3.2",
     "redux-devtools-dock-monitor": "^1.1.1",
@@ -49,7 +54,7 @@
     "antd-mobile": "^1.0.6",
     "babel-polyfill": "^6.23.0",
     "immutable": "^3.8.1",
-    "keymirror": "^0.1.1",
+    "moment": "^2.18.1",
     "react": "15.4.2",
     "react-custom-scrollbars": "^4.0.2",
     "react-dom": "15.4.2",
@@ -61,7 +66,8 @@
     "redux-immutablejs": "0.0.8",
     "redux-saga": "^0.14.3",
     "redux-thunk": "2.2.0",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.3",
+    "yunle-key": "^1.0.1"
   },
   "repository": "https://hexiao-o@github.com/hexiao-o/yunle-template-react.git",
   "author": "hexiao-o"

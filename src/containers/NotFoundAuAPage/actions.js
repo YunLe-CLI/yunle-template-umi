@@ -1,4 +1,3 @@
-// import { APP_TYPE } from '../App/constants';
 import INDEXG_TYPE from './constants';
 
 const {

@@ -3,8 +3,9 @@ import { is, fromJS } from 'immutable';
 import { Link } from 'react-router';
 
 import './assets/style.less';
+import { Card, Col, Row } from 'antd';
 
-export default class Login extends Component {
+export default class NotFindPage extends Component {
   state = {
     __data__: fromJS({}),
     collapsed: false,
@@ -25,8 +26,9 @@ export default class Login extends Component {
   }
   render() {
     return (
-      <div id="editPage">
-        404
+      <div className="NotFindPage">
+	      <div className="n" />
+        <Link to="/">返回首页</Link>
       </div>
     );
   }

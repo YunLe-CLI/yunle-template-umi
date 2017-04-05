@@ -2,7 +2,7 @@
 import 'babel-polyfill';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import Root from './containers';
+import Root from './root';
 import './index.html';
 
 ReactDOM.render(

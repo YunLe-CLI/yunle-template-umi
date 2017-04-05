@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { is, fromJS } from 'immutable';
 import { Spin } from 'antd';
 import AppActions from './actions';
+import GlobalModal from '../../components/GlobalModal';
 import './assets/style.less';
 
 class App extends Component {
@@ -16,16 +17,6 @@ class App extends Component {
   };
   componentWillMount() {
     const { transactions, actions } = this.props;
-  }
-  shouldComponentUpdate(nextProps = {}, nextState = {}) {
-    const thisProps = this.props || {}, thisState = this.state || {};
-    if (!is(thisProps.state, nextProps.state)) {
-      return true;
-    }
-    if (!is(thisState.__data__, nextState.__data__)) {
-      return true;
-    }
-    return false;
   }
   render() {
     const { children, actions, state } = this.props;
@@ -40,6 +31,11 @@ class App extends Component {
             null
           }
         </Spin>
+	      <GlobalModal
+		      info={globalModal}
+		      gModalShowApp={actions.gModalShowApp}
+		      gModalHideApp={actions.gModalHideApp}
+	      />
       </div>
     );
   }
@@ -52,8 +48,12 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
+	const actions = {};
+	for (let i in AppActions) {
+		actions[i] = bindActionCreators({ ...AppActions[i] }, dispatch);
+	}
   return {
-    actions: bindActionCreators(AppActions, dispatch)
+    actions,
   };
 }
 

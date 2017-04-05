@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { browserHistory, Router } from 'react-router';
+import { hashHistory, browserHistory, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import routes from '../../router';
+import routes from '../router';
 
-import DevTools from '../../components/DevTools';
+import DevTools from '../components/DevTools';
 
-import configureStore from '../../store';
+import configureStore from '../store';
 
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store, {
+const history = syncHistoryWithStore(hashHistory, store, {
   selectLocationState(state) {
     return state.get('routing').toJS();
   },

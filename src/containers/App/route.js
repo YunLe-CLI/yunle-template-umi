@@ -1,14 +1,28 @@
-import edit from '../EditPage/route';
-import login from '../LoginPage/route';
-import register from '../RegisterPage/route';
-import notFound from '../404/route';
+import App from './index';
+import config from '../config';
+let indexRoute = null;
+let childRoutes = [];
 
-const routes = [
-  {
-    id: '/',
-    name: '容器',
-    path: '/',
-  },
-];
+for (let i = 0; i < config.length; i++) {
+	const route = require(`../${config[i].root}/route`).default || [];
+	childRoutes = childRoutes.concat(route);
+}
 
-export default routes.concat(edit, login, register, notFound);
+for (let i = 0; i < childRoutes.length; i++) {
+	if (childRoutes[i]._indexRoute) {
+		indexRoute = childRoutes[i].path;
+	}
+}
+
+const routes = {
+	name: 'app',
+	path: '/',
+	component: App,
+	childRoutes,
+};
+
+if (indexRoute) {
+	routes.indexRoute = { onEnter: (nextState, replace) => replace(indexRoute) };
+}
+
+export default routes;
