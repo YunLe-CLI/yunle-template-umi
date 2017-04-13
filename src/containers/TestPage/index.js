@@ -24,6 +24,10 @@ export default class TemplatePage extends Component {
     return false;
   }
   render() {
+  	console.log(this.props);
+  	return (
+  		<h1>111</h1>
+	  );
   	const { actions, state } = this.props;
   	const { testTemplate, testFetchTemplate } = actions.TestPage;
   	const { globalModal, text, async } = state.get('TestPage').toJS();

@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { persistState } from 'redux-devtools';
 
 import createSagaMiddleware from 'redux-saga';
-import thunk from 'redux-thunk';
 import rootReducer from '../containers/App/reducer';
 import rootSaga from '../containers/App/sagas';
 import DevTools from '../components/DevTools';
@@ -14,11 +13,11 @@ export default function configureStore(initialState) {
   let enhancer;
   if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
     enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
-      applyMiddleware(thunk, sagaMiddleware),
+      applyMiddleware(sagaMiddleware),
     );
   } else {
     enhancer = compose(
-      applyMiddleware(thunk, sagaMiddleware),
+      applyMiddleware(sagaMiddleware),
       DevTools.instrument(),
       persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)),
     );

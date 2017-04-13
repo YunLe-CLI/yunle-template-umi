@@ -183,18 +183,21 @@ export default yunleKey({
 function eRoute(toPath, name, config) {
 	var toPath = path.join('./', toPath, 'route.js');
 	var tmp = function(name) {
-		return `export default {
-	path: '${config.route}',
-	name: '${name}',
-	breadcrumbName: '${config.breadcrumbName}',
-	_indexRoute: false,
-	getComponents(nextState, callback) {
-		require.ensure([], (require) => {
-			callback(null, require('./index').default);
-		});
+		return `const getComponents = (nextState, callback) => {
+	require.ensure([], (require) => {
+		callback(null, require('./index').default);
+	});
+}
+export default [
+	{
+		path: '${config.route}',
+		name: '${name}',
+		breadcrumbName: '${config.breadcrumbName}',
+		_indexRoute: false,
+		getComponents,
+		childRoutes: [],
 	},
-	childRoutes: [],
-};`;
+]`;
 	}
 	var data = tmp(name);
 	fs.open(toPath, 'w+', function(err, fd) {
